@@ -1,36 +1,47 @@
+import toNumber from 'lodash/toNumber';
 import React, { useMemo, useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [iMin, setIMin] = useState<string | undefined>(undefined);
-  const [iMax, setIMax] = useState<string | undefined>(undefined);
+  const [Imin, setImin] = useState<string | undefined>('');
+  const [Imax, setImax] = useState<string | undefined>('');
+
+  console.log({ iMin: Imin, iMax: Imax })
 
   const value = useMemo(
     () => {
-      if (iMin && iMax) {
-        // @ts-expect-error bad types
-        return (iMin - iMax) / (iMin + iMax )
+      if (Imin && Imax) {
+        const IminNumber = toNumber(Imin);
+        const ImaxNumber = toNumber(Imax);
+
+        return (ImaxNumber - IminNumber) / (ImaxNumber + IminNumber)
       }
 
-      return undefined;
+      return '';
     },
-    [iMin, iMax],
+    [Imin, Imax],
   );
 
   return (
     <div className="App">
       <div>
-        <label htmlFor="iMin">iMin</label>
-        <input id="iMin" value={iMin} onChange={e => setIMin(e.target.value)}/>
+        <label>
+          iMin
+          <input id="iMin" type="number" value={Imin} onChange={e => setImin(e.target.value)}/>
+        </label>
       </div>
       <div>
-        <label htmlFor="iMax">iMax</label>
-        <input id="iMax" value={iMax} onChange={e => setIMax(e.target.value)}/>
+        <label>
+          iMax
+          <input id="iMax" type="number" value={Imax} onChange={e => setImax(e.target.value)}/>
+        </label>
       </div>
       <div>
-        <label htmlFor="result">result</label>
-        <input id="result" disabled value={value}/>
+        <label>
+          result
+          <input id="result" type="number" disabled value={value}/>
+        </label>
       </div>
     </div>
   );
