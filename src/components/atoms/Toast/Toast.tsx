@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 type PropsT = {
@@ -8,14 +8,12 @@ type PropsT = {
 
 const ToastContainer = styled.div`
     position: absolute;
-    bottom: 0;
+    top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 16px;
 
-    overflow: hidden;
-
+    /* overflow: hidden; */
 `;
 
 const Text = styled.div<{ visible: boolean }>`
@@ -26,7 +24,7 @@ const Text = styled.div<{ visible: boolean }>`
     padding: 8px 16px;
 
     transition: transform 300ms, opacity 300ms;
-    transform: ${({ visible }) => !visible ? 'translateY(200%)': 'translateY(0)'};
+    transform: ${({ visible }) => !visible ? 'translateY(-200%)': 'translateY(10px)'};
     opacity: ${({ visible }) => !visible ? 0: 1};
 `;
 

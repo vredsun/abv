@@ -1,6 +1,5 @@
+import { FaRegTimesCircle } from 'react-icons/fa';
 import styled from 'styled-components';
-import { FaRegTimesCircle } from 'react-icons/fa'
-import { isUndefined } from 'lodash';
 
 const Container = styled.div`
     margin-top: 4px;
@@ -13,8 +12,9 @@ const InputContainer = styled.input`
     flex: 1;
     padding: 8px;
     font-size: 22px;
-    border-radius: 4px;
+    border-radius: 8px;
     border-width: 2px;
+    width: 100%;
 `
 
 const IconContainer = styled.div<{ hasValue: boolean }>`
@@ -27,6 +27,7 @@ const IconContainer = styled.div<{ hasValue: boolean }>`
     font-size: 22px;
     transition: opacity 300ms;
     opacity: ${({ hasValue }) => hasValue ? 1 : 0};
+    cursor: ${({ hasValue }) => hasValue ? 'pointer' : 'default'};
 `;
 
 type PropsT = {

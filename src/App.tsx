@@ -17,8 +17,8 @@ function App() {
 
   return (
     <MainPage>
-      <Math addToast={addToast} />
       <Toast toastData={toastData} handleCloseToast={() => changeToastData(null)} />
+      <Math addToast={addToast} />
     </MainPage>
   );
 }

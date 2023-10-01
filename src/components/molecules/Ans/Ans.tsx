@@ -1,14 +1,20 @@
 import isUndefined from 'lodash/isUndefined';
 import styled from 'styled-components';
 import CopyToClipboard from '../../atoms/CopyToClipboard/CopyToClipboard';
+import Label from '../../atoms/Label/Label';
+import LabelText from '../../atoms/LabelText/LabelText';
 import Response from '../../atoms/Response/Response';
 
 const AnsContainer = styled.div<{ hasValue: boolean }>`
-    margin-top: 24px;
+    margin-top: 4px;
     display: flex;
     flex: 1;
-    border: ${({ hasValue }) => hasValue ? '2px solid green' : '2px solid red'};
-    border-radius: 4px;
+    border: 2px solid grey;
+    background-color: lightgrey;
+    border-radius: 8px;
+    width: 100%;
+
+    overflow: hidden;
 `
 
 type PropsT = {
@@ -18,14 +24,18 @@ type PropsT = {
 
 const Ans: React.FC<PropsT> = ({ value, addToast }) => {
     const showToastWithGoodCopy = (): void => {
-      addToast('Text copied')
+      addToast(`Text copied: ${value ?? 0}`)
     }
 
     return (
-        <AnsContainer hasValue={!isUndefined(value)}>
-            <Response>{value}</Response>
-            <CopyToClipboard value={value} showToastWithGoodCopy={showToastWithGoodCopy} />
-        </AnsContainer>
+        <Label>
+            <LabelText>visibility</LabelText>
+            <AnsContainer hasValue={!isUndefined(value)}>
+                <Response>{value}</Response>
+                <CopyToClipboard value={value} showToastWithGoodCopy={showToastWithGoodCopy} />
+            </AnsContainer>
+        </Label>
+        
     )
 }
 

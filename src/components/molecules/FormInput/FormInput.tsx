@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
 import Label from '../../atoms/Label/Label';
+import LabelText from '../../atoms/LabelText/LabelText';
 
 const FormInputContainer = styled.div`
     margin-bottom: 8px;
@@ -17,7 +18,7 @@ const FormInput: React.FC<PropsT> = ({ label, value, onChange }) => {
     return (
         <FormInputContainer>
             <Label>
-                {label}
+                <LabelText>{label}</LabelText>
                 <Input id={label} type="number" value={value} onChange={onChange}/>
             </Label>
         </FormInputContainer>

@@ -1,11 +1,17 @@
 import toNumber from 'lodash/toNumber';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import React, { useMemo, useState } from 'react';
-import FormInput from '../../molecules/FormInput/FormInput';
+import Formula from '../../atoms/Formula/Formula';
 import Ans from '../../molecules/Ans/Ans';
+import FormInput from '../../molecules/FormInput/FormInput';
 
 const Container = styled.div`
-  padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 0 16px;
+    margin-bottom: ${8 * 16}px;
 `;
 
 type PropsT = {
@@ -22,7 +28,7 @@ const Math: React.FC<PropsT> = ({ addToast }) => {
         const IminNumber = toNumber(Imin);
         const ImaxNumber = toNumber(Imax);
 
-        return (ImaxNumber - IminNumber) / (ImaxNumber + IminNumber)
+        return Number(((ImaxNumber - IminNumber) / (ImaxNumber + IminNumber)).toFixed(3))
       }
 
       return undefined;
@@ -32,15 +38,16 @@ const Math: React.FC<PropsT> = ({ addToast }) => {
 
   return (
     <Container>
+      <Formula>(max - min) / (max + min)</Formula>
       <FormInput
-        label="iMin"
-        value={Imin}
-        onChange={setImin}
-      />
-      <FormInput
-        label="iMax"
+        label="max"
         value={Imax}
         onChange={setImax}
+      />
+      <FormInput
+        label="min"
+        value={Imin}
+        onChange={setImin}
       />
       <Ans value={value} addToast={addToast}/>
     </Container>

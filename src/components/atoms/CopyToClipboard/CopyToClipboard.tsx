@@ -1,12 +1,15 @@
+import { FaRegCopy } from 'react-icons/fa';
 import styled from 'styled-components';
-import { FaRegCopy } from 'react-icons/fa'
-import { isUndefined } from 'lodash';
 
 const CopyToClipboardButton = styled.div`
     padding: 8px;
     font-size: 22px;
     border: none;
-    border-left: 2px solid black;
+    border-left: 2px solid grey;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: white;
 `
 
 function fallbackCopyTextToClipboard(text: string, showToastWithGoodCopy: () => void): void {
@@ -41,11 +44,7 @@ type PropsT = {
 
 const CopyToClipboard: React.FC<PropsT> = ({ value, showToastWithGoodCopy }) => {
     const handleCopy = (): void => {
-        if (isUndefined(value)) {
-          return;
-        }
-
-        const text = value?.toString() ?? '';
+        const text = value?.toString() ?? '0';
 
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text, showToastWithGoodCopy);
